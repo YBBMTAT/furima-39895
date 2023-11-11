@@ -79,3 +79,4 @@ has_one:shipments
 
 ### Association
 belongs_to :buys
+
