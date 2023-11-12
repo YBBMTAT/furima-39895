@@ -30,52 +30,54 @@ Things you may want to cover:
 | nickname           | string | null: false              |
 | encrypted_password | string | null: false              |
 | email              | string | null: false,unique: true |
-| pbirthday          | text   | null: false              |
+| kanji_last_name    | string | null: false              |
+| kanji_first_name   | string | null: false              |
+| kana_last_name     | string | null: false              |
+| kana_first_name    | string | null: false              |
+| pbirthday          | date   | null: false              |
 
 has_many :items
 has_many :buys
 
 ## itemsテーブル
-| Column     | Type   | Options                      |
-| ---------- | ------ | ---------------------------- |
-|image       | text   | null: false----------------- |
-|item_name   | text   | null: false----------------- |
-|price       | integer| null: false----------------- |
-|description | text   | null: false----------------- |
-|category    | text   | null: false----------------- |
-|condition   | text   | null: false----------------- |
-|postage     | integer| null: false----------------- |
-|hometown    | text   | null: false----------------- |
-|leadtime    | text   | null: false----------------- |
-|coment      | text   | null: false----------------- |
-|user        | string | null: false,foreign_key: true|
+| Column        | Type   | Options                      |
+| ------------  | ------ | ---------------------------- |
+|item_name      | string | null: false----------------- |
+|price          | integer| null: false----------------- |
+|description    | text   | null: false----------------- |
+|category_id    | text   | null: false----------------- |
+|condition_id   | text   | null: false----------------- |
+|postage_id     | integer| null: false----------------- |
+|prefectures_id | text   | null: false----------------- |
+|leadtime_id    | text   | null: false----------------- |
+|user           | string | null: false,foreign_key: true|
 
 ### Association
-belongs_to :users
-has_one:buys
+belongs_to :user
+has_one:buy
 
 ## buysテーブル
 | Column     | Type   | Options                      |
 | ---------- | ------ | ---------------------------- |
 | user------ | string | null: false,foreign_key: true|
 | item------ | string | null: false,foreign_key: true|
-| purchaser- | string | null: false,foreign_key: true|
 
 ### Association
-belongs_to :items
+belongs_to :item
 belongs_to:user
-has_one:shipments
+has_one:shipment
 
 ## shipmentsテーブル
-| Column      | Type    | Options                      |
-| ----------- | ------  | ---------------------------- |
-| address     | string  | null: false----------------- |
-| prefectures | text    | null: false----------------- |
-| city        | text    | null: false----------------- |
-| street_num  | text    | null: false----------------- |
-| building    | text    | null: false----------------- |
-| street_num  | text    | null: false----------------- |
-| phone       | integer | null: false----------------- |
+| Column         | Type    | Options                      |
+| -------------- | ------  | ---------------------------- |
+| address        | string  | null: false----------------- |
+| prefectures_id | text    | null: false----------------- |
+| city           | text    | null: false----------------- |
+| street_num     | text    | null: false----------------- |
+| building       | text    | ---------------------------- |
+| street_num     | text    | null: false----------------- |
+| phone          | string  | null: false----------------- |
 
 ### Association
-belongs_to :buys
+belongs_to :buy
+
