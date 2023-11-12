@@ -68,17 +68,16 @@ belongs_to:user
 has_one:shipment
 
 ## shipmentsテーブル
-| Column         | Type       | Options                         |
-| -------------- | ---------  | ------------------------------- |
-| address        | string     | null: false-------------------- |
-| prefectures_id | text       | null: false-------------------- |
-| city           | text       | null: false-------------------- |
-| street_num     | text       | null: false-------------------- |
-| building       | text       |                                 |
-| street_num     | text       | null: false-------------------- |
-| phone          | string     | null: false-------------------- |
-| user           | references | null: false,foreign_key: true   |
-| item           | references | null: false,foreign_key: true   |
+| Column         | Type         | Options                         |
+| -------------- | -----------  | ------------------------------- |
+| address        | string       | null: false-------------------- |
+| prefectures_id | text         | null: false-------------------- |
+| city           | string       | null: false-------------------- |
+| street_num     | string       | null: false-------------------- |
+| building       | string       |                                 |
+| phone          | string       | null: false-------------------- |
+| user           | references   | null: false,foreign_key: true   |
+| item           | references   | null: false,foreign_key: true   |
 
 ### Association
 belongs_to :buy
