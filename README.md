@@ -57,10 +57,10 @@ belongs_to :user
 has_one:buy
 
 ## buysテーブル
-| Column     | Type   | Options                      |
-| ---------- | ------ | ---------------------------- |
-| user------ | string | null: false,foreign_key: true|
-| item------ | string | null: false,foreign_key: true|
+| Column     | Type       | Options                      |
+| ---------- | ---------- | ---------------------------- |
+| user       | references | null: false,foreign_key: true|
+| item       | references | null: false,foreign_key: true|
 
 ### Association
 belongs_to :item
@@ -68,15 +68,17 @@ belongs_to:user
 has_one:shipment
 
 ## shipmentsテーブル
-| Column         | Type    | Options                      |
-| -------------- | ------  | ---------------------------- |
-| address        | string  | null: false----------------- |
-| prefectures_id | text    | null: false----------------- |
-| city           | text    | null: false----------------- |
-| street_num     | text    | null: false----------------- |
-| building       | text    | ---------------------------- |
-| street_num     | text    | null: false----------------- |
-| phone          | string  | null: false----------------- |
+| Column         | Type       | Options                         |
+| -------------- | ---------  | ------------------------------- |
+| address        | string     | null: false-------------------- |
+| prefectures_id | text       | null: false-------------------- |
+| city           | text       | null: false-------------------- |
+| street_num     | text       | null: false-------------------- |
+| building       | text       |                                 |
+| street_num     | text       | null: false-------------------- |
+| phone          | string     | null: false-------------------- |
+| user           | references | null: false,foreign_key: true   |
+| item           | references | null: false,foreign_key: true   |
 
 ### Association
 belongs_to :buy
