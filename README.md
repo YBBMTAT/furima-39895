@@ -40,17 +40,17 @@ has_many :items
 has_many :buys
 
 ## itemsテーブル
-| Column        | Type   | Options                      |
-| ------------  | ------ | ---------------------------- |
-|item_name      | string | null: false----------------- |
-|price          | integer| null: false----------------- |
-|description    | text   | null: false----------------- |
-|category_id    | text   | null: false----------------- |
-|condition_id   | text   | null: false----------------- |
-|postage_id     | integer| null: false----------------- |
-|prefectures_id | text   | null: false----------------- |
-|leadtime_id    | text   | null: false----------------- |
-|user           | string | null: false,foreign_key: true|
+| Column        | Type     | Options                      |
+| ------------  | -------- | ---------------------------- |
+|item_name      | string   | null: false----------------- |
+|price          | integer  | null: false----------------- |
+|description    | text     | null: false----------------- |
+|category_id    | integer  | null: false----------------- |
+|condition_id   | integer  | null: false----------------- |
+|postage_id     | integer  | null: false----------------- |
+|prefecture_id  | integer  | null: false----------------- |
+|leadtime_id    | integer  | null: false----------------- |
+|user           |references| null: false,foreign_key: true|
 
 ### Association
 belongs_to :user
@@ -71,13 +71,13 @@ has_one:shipment
 | Column         | Type         | Options                         |
 | -------------- | -----------  | ------------------------------- |
 | address        | string       | null: false-------------------- |
-| prefectures_id | text         | null: false-------------------- |
+| prefecture_id  | integer      | null: false-------------------- |
 | city           | string       | null: false-------------------- |
 | street_num     | string       | null: false-------------------- |
 | building       | string       |                                 |
 | phone          | string       | null: false-------------------- |
-| user           | references   | null: false,foreign_key: true   |
-| item           | references   | null: false,foreign_key: true   |
+| buy            | references   | null: false,foreign_key: true   |
+
 
 ### Association
 belongs_to :buy
