@@ -34,7 +34,7 @@ Things you may want to cover:
 | kanji_first_name   | string | null: false              |
 | kana_last_name     | string | null: false              |
 | kana_first_name    | string | null: false              |
-| birthday          | date   | null: false              |
+| birthday           | date   | null: false              |
 
 has_many :items
 has_many :buys
