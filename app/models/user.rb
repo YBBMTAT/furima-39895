@@ -4,9 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         #validates :email, presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
-         validates :email, format: { with: /.*\.jp\z/i }
-         validates :password, presence: true
+         validates :email, presence: true, format: { with: /@/ }
+         validates :kanji_last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
+         validates :kanji_first_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
+         validates :kana_last_name, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+         validates :kana_first_name, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+         validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
          validates :password, confirmation: { case_sensitive: true }
          validates :password_confirmation, presence: true
+         validates :birthday, presence: true
 end
