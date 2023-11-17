@@ -55,6 +55,20 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password is invalid")
     end
 
+    it 'パスワードが半角数字だけでは登録できない' do
+      @user.password = '123456' 
+      @user.password_confirmation = '123456'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
+    it 'パスワードが半角英語だけでは登録できない' do
+      @user.password = 'abcdef' 
+      @user.password_confirmation = 'abcdef'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
     it '確認パスワードが不一致では登録できない' do
      @user.password = 'a12345'
      @user.password_confirmation = 'b12345'
