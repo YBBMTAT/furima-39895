@@ -7,11 +7,13 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー管理機能' do
 
-   describe '新規ユーザー' do
+   describe '会員情報入力' do
+    context '新規登録できるとき' do
       it 'nickname,email,名前(平仮名漢字),名前(カタカナ)password,誕生日が入力してあれば登録できる' do
         expect(@user).to be_valid
       end
-
+    end
+    context '新規登録できないとき' do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''  # nicknameの値を空にする
         @user.valid?
@@ -25,30 +27,30 @@ RSpec.describe User, type: :model do
       end
       
       it '同じ(既に登録済み)emailは登録できない' do
-      @user.save
-      another_user = FactoryBot.build(:user) #another_user生成
-      another_user.email = @user.email #保存済みの@user.email
-      another_user.valid?
-      expect(another_user.errors.full_messages).to include('Email has already been taken')
+        @user.save
+        another_user = FactoryBot.build(:user) #another_user生成
+        another_user.email = @user.email #保存済みの@user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
       it '@が含まれないemailは登録出来ない' do
-      @user.email = 'testmail' #@が無いアドレスに上書き
-      @user.valid?
-      expect(@user.errors.full_messages).to include('Email is invalid')
+        @user.email = 'testmail' #@が無いアドレスに上書き
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
       it 'パスワードが空では登録できない' do
-      @user.password = ''# passwordの値を空にする
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Password can't be blank")
-      end
+        @user.password = ''# passwordの値を空にする
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password can't be blank")
+        end
 
       it 'パスワードが6文字以下では登録できない' do
-      @user.password = 'a1234' #半角英数字込みで6文字以下で上書き
-      @user.password_confirmation = 'a1234'
-      @user.valid?
-      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+        @user.password = 'a1234' #半角英数字込みで6文字以下で上書き
+        @user.password_confirmation = 'a1234'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
       it 'パスワードが全角だと登録できない' do
@@ -94,15 +96,20 @@ RSpec.describe User, type: :model do
       end
 
       it '確認パスワードが不一致では登録できない' do
-      @user.password = 'a12345'
-      @user.password_confirmation = 'b12345'
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        @user.password = 'a12345'
+        @user.password_confirmation = 'b12345'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-    end
 
-    describe '本人確認' do
-      it '名前(全角)は名字が空では登録出来ない' do
+      it '名前(全角)は全角漢字平仮名でなければ登録出来ない' do
+        @user.kanji_last_name = 'tanaka'
+        @user.kanji_first_name = 'tarou'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Kanji last name is invalid", "Kanji first name is invalid")
+      end
+
+      it '名前(全角)名字が空では登録出来ない' do
         @user.kanji_last_name = ''  # 苗字値を空にする
         @user.valid?
         expect(@user.errors.full_messages).to include("Kanji last name can't be blank", "Kanji last name is invalid")
@@ -138,7 +145,9 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
+
     end
+   end
   end
 
 end
