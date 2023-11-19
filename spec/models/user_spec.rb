@@ -7,7 +7,11 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー管理機能' do
 
-   describe '新規ユーザー登録' do
+   describe '新規ユーザー' do
+      it 'nickname,email,名前(平仮名漢字),名前(カタカナ)password,誕生日が入力してあれば登録できる' do
+        expect(@user).to be_valid
+      end
+
       it 'nicknameが空では登録できない' do
         @user.nickname = ''  # nicknameの値を空にする
         @user.valid?
@@ -96,6 +100,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
     end
+
     describe '本人確認' do
       it '名前(全角)は名字が空では登録出来ない' do
         @user.kanji_last_name = ''  # 苗字値を空にする
