@@ -12,6 +12,6 @@ class User < ApplicationRecord
          validates :kana_first_name, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
          validates :password, presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
          validates :password, confirmation: { case_sensitive: true }
-         validates :password_confirmation, presence: true
+
          validates :birthday, presence: true
 end
