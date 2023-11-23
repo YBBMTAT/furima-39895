@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   belongs_to :postage
   belongs_to :prefecture
   belongs_to :user
-
+  has_one_attached :image
     #カテゴリーの選択が「---」の時は保存できないようにする
     validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
 
@@ -21,4 +21,10 @@ class Item < ApplicationRecord
 
     #地域の選択が「---」の時は保存できないようにする
     validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
+
+    validates :image, presence: true
+    validates :item_name, presence: true
+    validates :description, presence: true
+    validates :price, presence: true, format: { with: /\A\d+\z/,}
+
 end
