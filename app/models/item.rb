@@ -1,12 +1,12 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :condition
-  belongs_to :leadtime
-  belongs_to :postage
-  belongs_to :prefecture
-  belongs_to :user
-  has_one_attached :image
+    belongs_to :category
+    belongs_to :condition
+    belongs_to :leadtime
+    belongs_to :postage
+    belongs_to :prefecture
+    belongs_to :user
+    has_one_attached :image
     #カテゴリーの選択が「---」の時は保存できないようにする
     validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
 
@@ -26,5 +26,6 @@ class Item < ApplicationRecord
     validates :item_name, presence: true
     validates :description, presence: true
     validates :price, presence: true, format: { with: /\A\d+\z/,}
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
 end
