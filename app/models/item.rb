@@ -5,9 +5,9 @@ class Item < ApplicationRecord
     belongs_to :leadtime
     belongs_to :postage
     belongs_to :prefecture
-    has_one :purchase
     #↑プルダウンデータ
     belongs_to :user
+    has_one :purchase
     has_one_attached :image
     #カテゴリーの選択が「---」の時は保存できないようにする
     validates :category_id, numericality: { other_than: 1, message: "can't be blank"}
