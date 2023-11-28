@@ -37,7 +37,7 @@ Things you may want to cover:
 | birthday           | date   | null: false              |
 
 has_many :items
-has_many :buys
+has_many :purchases
 
 ## itemsテーブル
 | Column        | Type     | Options                      |
@@ -54,9 +54,9 @@ has_many :buys
 
 ### Association
 belongs_to :user
-has_one:buy
+has_one :purchase
 
-## buysテーブル
+## purchasesテーブル
 | Column     | Type       | Options                      |
 | ---------- | ---------- | ---------------------------- |
 | user       | references | null: false,foreign_key: true|
@@ -64,8 +64,8 @@ has_one:buy
 
 ### Association
 belongs_to :item
-belongs_to:user
-has_one:shipment
+belongs_to :user
+has_one :shipment
 
 ## shipmentsテーブル
 | Column         | Type         | Options                         |
@@ -76,9 +76,9 @@ has_one:shipment
 | street_num     | string       | null: false-------------------- |
 | building       | string       |                                 |
 | phone          | string       | null: false-------------------- |
-| buy            | references   | null: false,foreign_key: true   |
+| purchase       | references   | null: false,foreign_key: true   |
 
 
 ### Association
-belongs_to :buy
+belongs_to :purchase
 
