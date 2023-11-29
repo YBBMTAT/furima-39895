@@ -24,7 +24,7 @@
     </div>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合の条件分岐 %>
-    <% if user_signed_in? && @item.purchase.present? %><%#ユーザーがログインしている 且つ 商品が出品中である%>
+    <% if user_signed_in? %> <%#ユーザーがログインしている 且つ 商品が出品中"&& @item.purchase.present?"である%>
       <% if current_user.id == @item.user_id %><%#商品詳細画面にアクセスしたユーザーが出品者である%>
           <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
           <p class="or-text">or</p>
