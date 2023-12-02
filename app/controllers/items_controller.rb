@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:edit, :update, :show]
   before_action :move_to_new_user_session, except: [:index,:show]
 
   def index
@@ -19,12 +20,31 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+
+  end
+
+  def edit
+     unless current_user == @item.user
+      redirect_to root_path
+     end
+  end
+
+  def update
+
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
   def item_params
     params.require(:item).permit(:image, :item_name, :price, :description, :category_id, :condition_id, :postage_id, :prefecture_id, :leadtime_id,).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
   def move_to_new_user_session
