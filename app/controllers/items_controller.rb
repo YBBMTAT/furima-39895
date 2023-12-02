@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update]
+  before_action :set_item, only: [:edit, :update, :show]
   before_action :move_to_new_user_session, except: [:index,:show]
 
   def index
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-   @item = Item.find(params[:id])
+
   end
 
   def edit
