@@ -64,8 +64,8 @@ has_one:buy
 
 ### Association
 belongs_to :item
-belongs_to:user
-has_one:shipment
+belongs_to :user
+has_one :shipment
 
 ## shipmentsテーブル
 | Column         | Type         | Options                         |
