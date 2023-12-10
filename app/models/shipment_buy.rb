@@ -1,10 +1,10 @@
 class ShipmentBuy
-  
+
   include ActiveModel::Model
 
 
   # フォームで使用(保存)する属性
-  attr_accessor :address, :prefecture_id, :city, :street_num, :building, :phone, :user_id, :item_id
+  attr_accessor :address, :prefecture_id, :city, :street_num, :building, :phone, :user_id, :item_id, :item_price, :token
 
     # バリデーションの設定
       #郵便番号は必須かつ「3桁ハイフン4桁」の半角文字列のみ有効
@@ -21,6 +21,9 @@ class ShipmentBuy
 
       #電話番号が必須かつ10桁以上11桁以内の半角数値のみ有効
       validates :phone, presence: true, numericality: { only_integer: true }, length: { minimum: 10, maximum: 11 }
+
+      #トークンが空では保存出来ない
+      validates :token, presence: true
 
       validates :user_id, presence: true
       validates :item_id, presence: true
