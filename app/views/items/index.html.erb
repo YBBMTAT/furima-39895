@@ -136,13 +136,12 @@
               <%# 商品画像 %>
               <%= image_tag item.image, class: "item-img" %>
 
-              <%# 学習メモ 商品が売れていればsold outを表示しましょう %>
+              <%# sold out表示条件 %>
               <div class='sold-out'>
-               <%# if "条件"%>
+               <%# if @item && Buy.exists?(item_id: @item.id) %>
                 <span>Sold Out!!</span>
                <%# end %>
               </div>
-              <%# //学習メモ 商品が売れていればsold outを表示しましょう %>
 
             </div>
             <div class='item-info'>

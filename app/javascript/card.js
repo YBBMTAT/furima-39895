@@ -10,6 +10,7 @@ const pay = () => {
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
   
+  // 処理が完了した時トークンを取得,response.error
   const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
     payjp.createToken(numberElement).then(function (response) {
