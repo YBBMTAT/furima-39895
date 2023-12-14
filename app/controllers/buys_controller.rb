@@ -1,9 +1,15 @@
 class BuysController < ApplicationController
-
+  before_action :move_to_top_session, except: [:create]
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find(params[:item_id])
-    @shipment_buy = ShipmentBuy.new
+
+    if user_signed_in? && current_user != @item.user && !Buy.exists?(item_id: @item.id)
+      @shipment_buy = ShipmentBuy.new
+    else
+      redirect_to root_path
+    end
+
   end
 
   def create
@@ -15,7 +21,7 @@ class BuysController < ApplicationController
       @shipment_buy.save
       redirect_to root_path
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"] #PAY.JPテスト公開密鍵
       render :index, status: :unprocessable_entity
     end
   end
@@ -33,6 +39,12 @@ class BuysController < ApplicationController
 
   def buy_params
     params.require(:shipment_buy).permit(:address, :prefecture_id, :city, :street_num, :building, :phone, :user_id, :item_id).merge(user_id: current_user.id, token: params[:token])
+  end
+
+  def move_to_top_session
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 
 end
