@@ -138,9 +138,9 @@
 
               <%# sold out表示条件 %>
               <div class='sold-out'>
-               <%# if @item && Buy.exists?(item_id: @item.id) %>
+               <% if Buy.exists?(item_id: item.id) %>
                 <span>Sold Out!!</span>
-               <%# end %>
+               <% end %>
               </div>
 
             </div>
