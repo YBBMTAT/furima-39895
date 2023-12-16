@@ -40,7 +40,7 @@ class BuysController < ApplicationController
   end
 
   def buy_params
-    params.require(:shipment_buy).permit(:address, :prefecture_id, :city, :street_num, :building, :phone, :user_id, :item_id).merge(user_id: current_user.id, token: params[:token])
+    params.require(:shipment_buy).permit(:address, :prefecture_id, :city, :street_num, :building, :phone).merge(user_id: current_user.id, token: params[:token], item_id: params[:shipment_buy][:item_id])
   end
 
   def move_to_top_session
