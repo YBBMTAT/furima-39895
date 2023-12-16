@@ -1,8 +1,10 @@
 class BuysController < ApplicationController
+  before_action :set_item, only:[:index, :create]
+
   before_action :move_to_top_session, except: [:create]
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @item = Item.find(params[:item_id])
+
 
     if user_signed_in? && current_user != @item.user && !Buy.exists?(item_id: @item.id)
       @shipment_buy = ShipmentBuy.new
@@ -13,7 +15,7 @@ class BuysController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
+
     item_price = @item.price
     @shipment_buy = ShipmentBuy.new(buy_params.merge(item_price: item_price))
     if @shipment_buy.valid?
@@ -45,6 +47,10 @@ class BuysController < ApplicationController
     unless user_signed_in?
       redirect_to root_path
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 end
