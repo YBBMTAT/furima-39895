@@ -127,15 +127,14 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
       <%# 出品商品の表示 %>
-      <li class='list'>
-        <% @items.each do |item| %>
+      <% @items.each do |item| %>
+       <li class='list'>
           <%= link_to item_path(item.id) do %>
             <div class='item-img-content'>
               <%# 商品画像 %>
-              <%= image_tag item.image, class: "item-img" %>
-
+            <%= image_tag item.image, class: "item-img" %>
+            
               <%# sold out表示条件 %>
               <div class='sold-out'>
                <% if Buy.exists?(item_id: item.id) %>
@@ -158,10 +157,10 @@
               </div>
             </div>
           <% end %>
-        <% end %>
-      </li>
+       </li>
+      <% end %>
 
-      <%# 商品がない場合のダミー商品%>
+        <%# 商品がない場合のダミー商品%>
         <li class='list'>
           <% if @items.blank? %>
             <%= link_to '#' do %>
