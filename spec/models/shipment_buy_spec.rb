@@ -6,7 +6,6 @@ RSpec.describe ShipmentBuy, type: :model do
     before do
       user = FactoryBot.create(:user)
       item = FactoryBot.create(:item)
-      buy = FactoryBot.create(:buy, user: user, item: item)
       @shipment_buy = FactoryBot.build(:shipment_buy, user_id: user.id, item_id: item.id)
     end
 
