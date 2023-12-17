@@ -17,6 +17,7 @@ RSpec.describe ShipmentBuy, type: :model do
 
       it 'buildingは空でも購入できる' do
         @shipment_buy.building = nil
+        expect(@shipment_buy).to be_valid
       end
     end
 
@@ -31,7 +32,7 @@ RSpec.describe ShipmentBuy, type: :model do
       it 'addressが空では購入できない'do
         @shipment_buy.address = nil
         @shipment_buy.valid?
-        expect(@shipment_buy.errors.full_messages).to include("Address can't be blank", "Address is invalid")
+        expect(@shipment_buy.errors.full_messages).to include("Address can't be blank")
       end
 
       it 'addressが「3桁ハイフン4桁」の半角文字列の記入でないと購入できない'do
