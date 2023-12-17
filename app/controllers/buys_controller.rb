@@ -1,7 +1,7 @@
 class BuysController < ApplicationController
   before_action :set_item, only:[:index, :create]
 
-  before_action :move_to_top_session, except: [:create]
+  before_action :authenticate_user!
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
 
@@ -43,11 +43,6 @@ class BuysController < ApplicationController
     params.require(:shipment_buy).permit(:address, :prefecture_id, :city, :street_num, :building, :phone).merge(user_id: current_user.id, token: params[:token], item_id: params[:shipment_buy][:item_id])
   end
 
-  def move_to_top_session
-    unless user_signed_in?
-      redirect_to root_path
-    end
-  end
 
   def set_item
     @item = Item.find(params[:item_id])
