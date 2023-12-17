@@ -44,31 +44,31 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品カテゴリーが「---」では出品できない' do
-        @item.category_id = '---'
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it '商品状態が「---」では出品できない' do
-        @item.condition_id = '---'
+        @item.condition_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
       it '配送料が「---」では出品できない' do
-        @item.postage_id = '---'
+        @item.postage_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage can't be blank")
       end
 
       it '発送元地域が「---」では出品できない' do
-        @item.prefecture_id = '---'
+        @item.prefecture_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it '発送日が「---」では出品できない' do
-        @item.leadtime_id = '---'
+        @item.leadtime_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Leadtime can't be blank")
       end

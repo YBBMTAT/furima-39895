@@ -7,6 +7,8 @@ class Item < ApplicationRecord
     belongs_to :prefecture
     belongs_to :user
     has_one_attached :image
+    has_one :buy
+    
     #カテゴリーの選択が「---」の時は保存できないようにする
     validates :category_id, numericality: { other_than: 1, message: "can't be blank"}
 

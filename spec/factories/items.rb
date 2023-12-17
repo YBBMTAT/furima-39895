@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    item_name {Faker::Lorem.sentence}
+    item_name {Faker::Lorem.sentence(word_count: rand(1..10)).truncate(40) }
     description {Faker::Lorem.sentence}
     category_id { Category.where.not(name: '---').sample.id } #「---」でないカテゴリーからランダムに1つ選ぶ
     condition_id { Condition.where.not(name: '---').sample.id }
