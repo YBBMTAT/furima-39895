@@ -6,7 +6,7 @@ class CreateShipments < ActiveRecord::Migration[7.0]
       t.integer :prefecture_id,           null: false
       t.string :city,                     null: false
       t.string :street_num,               null: false
-      t.string :building,                 null: false
+      t.string :building
       t.string :phone,                    null: false
       t.references :buy,                  null: false,foreign_key: true
       
