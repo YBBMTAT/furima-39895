@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   def edit
     if user_signed_in? && current_user != @item.user && Buy.exists?(item_id: @item.id)
       redirect_to root_path
-     end
+    end
   end
 
   def update
@@ -58,7 +58,9 @@ class ItemsController < ApplicationController
   end
 
   def edit_move_to_top_session
-    redirect_to root_path
+    unless current_user == @item.user && !Buy.exists?(item_id: @item.id)
+     redirect_to root_path
+    end
   end
 
 
