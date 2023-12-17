@@ -42,7 +42,7 @@ RSpec.describe ShipmentBuy, type: :model do
       end
 
       it 'prefectureを選択していないと購入できない' do
-        @shipment_buy.prefecture_id = '---'
+        @shipment_buy.prefecture_id = '1'
         @shipment_buy.valid?
         expect(@shipment_buy.errors.full_messages).to include("Prefecture can't be blank")
       end
