@@ -76,13 +76,12 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'unicorn', '6.1.0'
 end
 
 gem 'devise'
 gem 'pry-rails'
-gem 'faker'
+
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'active_hash'
