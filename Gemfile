@@ -93,3 +93,4 @@ gem 'active_hash'
 gem 'payjp'
 gem 'gon'#学習メモ秘密鍵などの秘匿情報を決して扱わないように
 gem "aws-sdk-s3", require: false
+gem 'rails-i18n'
