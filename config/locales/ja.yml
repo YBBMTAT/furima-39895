@@ -12,9 +12,20 @@ ja:
         description: 商品の説明
         price: 商品価格
       user:
-       nickname: ニックネーム
-       kanji_last_name: 苗字(全角)
-       kanji_first_name: お名前(全角)
-       kana_last_name: 苗字(カナ)
-       kana_first_name: お名前(カナ)
-       birthday: 生年月日
+        nickname: ニックネーム
+        kanji_last_name: 苗字(全角)
+        kanji_first_name: お名前(全角)
+        kana_last_name: 苗字(カナ)
+        kana_first_name: お名前(カナ)
+        birthday: 生年月日
+        
+  activemodel:
+    attributes:
+      shipment_buy:
+        address: 郵便番号
+        prefecture_id: 都道府県
+        city: 市区町村
+        street_num: 番地
+        phone: 電話番号
+        token: カード情報
+        prefecture_id: 地域
